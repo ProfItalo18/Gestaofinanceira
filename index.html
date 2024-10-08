@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Financeira</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestão Financeira Dinâmica</h1>
+
+        <div class="form">
+            <label for="description">Descrição:</label>
+            <input type="text" id="description" placeholder="Descreva a Receita ou Despesa">
+
+            <label for="amount">Valor:</label>
+            <input type="number" id="amount" placeholder="Valor">
+
+            <label for="type">Tipo:</label>
+            <select id="type">
+                <option value="income">Receita</option>
+                <option value="expense">Despesa</option>
+            </select>
+
+            <label for="month">Mês de Vigência:</label>
+            <input type="month" id="month">
+
+            <button onclick="addTransaction()">Adicionar</button>
+        </div>
+
+        <div class="summary">
+            <h2>Resumo Financeiro</h2>
+            <p>Receita Total: <span id="totalIncome">R$ 0.00</span></p>
+            <p>Despesa Total: <span id="totalExpense">R$ 0.00</span></p>
+            <p>Saldo: <span id="balance">R$ 0.00</span></p>
+            <h3>Balanço Mensal</h3>
+            <p id="monthlyBalance">R$ 0.00</p>
+            <h3>Balanço Anual</h3>
+            <p id="annualBalance">R$ 0.00</p>
+        </div>
+
+        <div id="chartContainer">
+            <canvas id="chart"></canvas>
+        </div>
+
+        <!-- Planilha dinâmica (Tabela para visualização) -->
+        <div class="table-container">
+            <h2>Planilha Dinâmica</h2>
+            <table id="dynamicTable">
+                <thead>
+                    <tr>
+                        <th>Mês</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas dinâmicas irão aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="exportSpreadsheet()">Exportar Planilha</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
